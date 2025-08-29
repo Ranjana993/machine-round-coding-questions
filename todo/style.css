@@ -1,0 +1,72 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+h1{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+  margin-right: 10px;
+}
+button{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+button:hover{
+  background-color: #218838;
+  transition: background-color 0.3s;
+ 
+}
+.deleteBtn{
+  background-color: #dc3545;
+  margin-left: 10px;
+}
+.deleteBtn:hover{
+  background-color: #c82333;
+  transition: background-color 0.3s;
+}
+.todoList{
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+li{
+  list-style: none;
+  margin: 5px 0;
+  font-size: 18px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center ;
+}
+.editBtn{
+  background-color: #007bff;
+  margin-left: 10px;
+}
+.editBtn:hover{
+  background-color: #0069
+}

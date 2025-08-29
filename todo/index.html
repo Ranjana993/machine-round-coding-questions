@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Todo List </title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Manage Your Todos </h1>
+    <div>
+      <input type="text" id="inputVal" placeholder="What you want to add? ">
+      <button id="btn" type="submit">Add</button>
+    </div>
+    <div id="items"></div>
+  </div>
+
+
+  <script>
+    const inputVal = document.getElementById("inputVal");
+    const btn = document.getElementById("btn")
+    const items = document.getElementById("items")
+    let list = JSON.parse(localStorage.getItem("todoList")) || [];
+
+    function fetchingData() {
+      items.innerHTML = ""
+      const ul = document.createElement("ul")
+      ul.classList.add("todoList")
+      list.forEach((item, index) => {
+        const li = document.createElement("li")
+        li.textContent = item
+
+        // delete first 
+        const deleteBtn = document.createElement("button")
+        deleteBtn.textContent = "Delete"
+        deleteBtn.classList.add("deleteBtn")
+        deleteBtn.onclick = () => {
+          list.splice(index, 1);
+          localStorage.setItem("todoList", JSON.stringify(list))
+          fetchingData();
+        }
+
+        // edit 
+        const editBtn = document.createElement("button")
+        editBtn.textContent = "Edit"
+        editBtn.classList.add("editBtn")
+        editBtn.onclick = () => {
+          const newItem = prompt("Edit your item", item)
+          if(newItem !== null && newItem.trim() !==""){
+            list[index] = newItem.trim();
+            localStorage.setItem("todolist", JSON.stringify(list))
+            fetchingData()
+          }
+        }
+
+
+        li.appendChild(editBtn)
+        li.appendChild(deleteBtn)
+        ul.appendChild(li)
+      })
+      items.appendChild(ul)
+    }
+    fetchingData()
+    btn.addEventListener("click", () => {
+      if (inputVal.value.trim() !== "") {
+        list.push(inputVal.value)
+        localStorage.setItem("todoList", JSON.stringify(list))
+        inputVal.value = ""
+        fetchingData()
+      }
+    })
+
+  </script>
+</body>
+
+</html>
