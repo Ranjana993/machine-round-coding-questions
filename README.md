@@ -215,6 +215,272 @@ function flattenObject(obj, prefix = "") {
 }
 ```
 
+### 4.2 Sort an Object by Its Values (Descending)
+
+**Question:** Write a function to sort an object by its values in descending order.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const sortedData = Object.fromEntries(Object.entries(marks).sort((a, b) => b[1] - a[1]));
+console.log(sortedData);
+```
+
+### 4.3 Sort an Object by Its Keys
+
+**Question:** Write a function to sort an object by its keys.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const sorted = Object.fromEntries(Object.entries(marks).sort());
+console.log(sorted);
+```
+
+### 4.4 Find the Key with the Highest Value
+
+**Question:** Write a function to find the key with the highest value in an object.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const topMarks = Object.keys(marks).reduce((a, b) => marks[a] > marks[b] ? a : b);
+console.log(topMarks);
+```
+
+### 4.5 Find the Key with the Lowest Value
+
+**Question:** Write a function to find the key with the lowest value in an object.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const low = Object.keys(marks).reduce((a, b) => marks[a] < marks[b] ? a : b);
+console.log(low);
+```
+
+### 4.6 Convert Object to Array of Objects
+
+**Question:** Write a function to convert an object to an array of objects with key-value pairs.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const result = Object.entries(marks).map(([title, score]) => ({ title, score }));
+console.log(result);
+```
+
+### 4.7 Filter Object by Values
+
+**Question:** Write a function to filter an object to include only entries where the value is greater than a specified number.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const filteredData = Object.fromEntries(Object.entries(marks).filter(([, score]) => score > 20));
+console.log(filteredData);
+```
+
+### 4.8 Count Character Occurrences in a String
+
+**Question:** Write a function to count the occurrences of each character in a string using an object.
+
+**Solution:**
+
+```javascript
+const str = "strawberrystrawberry";
+let count = {};
+for (let char of str) {
+  count[char] = (count[char] || 0) + 1;
+}
+console.log(count);
+```
+
+### 4.9 Group Array of Objects by a Property
+
+**Question:** Write a function to group an array of objects by a specific property.
+
+**Solution:**
+
+```javascript
+const users = [
+  { name: "A", age: 20 },
+  { name: "B", age: 20 },
+  { name: "C", age: 21 },
+  { name: "D", age: 20 },
+  { name: "F", age: 21 },
+];
+const grouped = users.reduce((acc, user) => {
+  acc[user.age] = acc[user.age] || [];
+  acc[user.age].push(user);
+  return acc;
+}, {});
+console.log(grouped);
+```
+
+### 4.10 Remove a Key from an Object Without Mutating
+
+**Question:** Write a function to remove a key from an object without mutating the original object.
+
+**Solution:**
+
+```javascript
+const obj = { name: "Ranjana", age: 24 };
+const { age, ...rest } = obj;
+console.log(rest);
+```
+
+### 4.11 Check if Two Objects Have the Same Properties
+
+**Question:** Write a function to check if two objects have the same properties (keys), regardless of order.
+
+**Solution:**
+
+```javascript
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, a: 4 };
+const sameKeys = JSON.stringify(Object.keys(obj1).sort()) === JSON.stringify(Object.keys(obj2).sort());
+console.log(sameKeys);
+```
+
+### 4.12 Convert Array of Objects to Object
+
+**Question:** Write a function to convert an array of objects to an object keyed by a specific property.
+
+**Solution:**
+
+```javascript
+const arr = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" }
+];
+const objArr = arr.reduce((acc, item) => {
+  acc[item.id] = item;
+  return acc;
+}, {});
+console.log(objArr);
+```
+
+### 4.13 Find Keys with Duplicate Values in an Object
+
+**Question:** Write a function to find keys that have duplicate values in an object.
+
+**Solution:**
+
+```javascript
+const data = { a: 1, b: 2, c: 1, d: 3 };
+const duplicates = Object.entries(data)
+  .filter(([, v], _, arr) => arr.filter(([, val]) => val === v).length > 1)
+  .map(([k]) => k);
+console.log(duplicates);
+```
+
+### 4.14 Sum All Values in an Object
+
+**Question:** Write a function to sum all numeric values in an object.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const total = Object.values(marks).reduce((sum, v) => sum + v, 0);
+console.log(total);
+```
+
+### 4.15 Find Object Key by Value
+
+**Question:** Write a function to find the key of an object by its value.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const objKey = Object.keys(marks).find(key => marks[key] === 12);
+console.log(objKey);
+```
+
+### 4.16 Transform Object Values
+
+**Question:** Write a function to transform (e.g., double) all values in an object.
+
+**Solution:**
+
+```javascript
+const marks = { a: 12, d: 45, e: 23, b: 70, c: 16 };
+const doubled = Object.fromEntries(Object.entries(marks).map(([key, val]) => [key, val * 2]));
+console.log(doubled);
+```
+
+### 4.17 Sort an Object by Its Values (Ascending)
+
+**Question:** Write a function to sort an object by its values in ascending order.
+
+**Solution:**
+
+```javascript
+const obj = { a: 10, b: 5, c: 20 };
+const newObj = Object.fromEntries(Object.entries(obj).sort((a, b) => a[1] - b[1]));
+console.log(newObj);
+```
+
+### 4.18 Find First Key with Value Greater Than a Number
+
+**Question:** Write a function to find the first key in an object where the value is greater than a specified number.
+
+**Solution:**
+
+```javascript
+const obj = { a: 10, b: 5, c: 20 };
+const key = Object.keys(obj).find(item => obj[item] > 10);
+console.log(key);
+```
+
+### 4.19 Reverse Keys and Values in an Object
+
+**Question:** Write a function to reverse the keys and values in an object.
+
+**Solution:**
+
+```javascript
+const data = { a: 1, b: 2, c: 3 };
+const reverseData = Object.fromEntries(Object.entries(data).map(([k, v]) => [v, k]));
+console.log(reverseData);
+```
+
+### 4.20 Remove Keys with Falsy Values
+
+**Question:** Write a function to remove keys from an object that have falsy values.
+
+**Solution:**
+
+```javascript
+const obj = { a: 0, b: 1, c: "", d: 4 };
+const cleaned = Object.fromEntries(Object.entries(obj).filter(([, v]) => v));
+console.log(cleaned);
+```
+
+### 4.21 Count Total Number of Keys in a Nested Object
+
+**Question:** Write a recursive function to count the total number of keys in a nested object.
+
+**Solution:**
+
+```javascript
+const countKeys = obj =>
+  Object.values(obj).reduce(
+    (c, v) => c + (typeof v === "object" && v !== null ? countKeys(v) : 0),
+    Object.keys(obj).length
+  );
+
+console.log(countKeys({ a: 1, b: { c: 2, d: { e: 3 } } }));
+```
+
 ## 5. Other Algorithms
 
 ### 5.1 Count Letters in a Word
